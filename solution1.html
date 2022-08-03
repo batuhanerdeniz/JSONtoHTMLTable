@@ -1,0 +1,111 @@
+
+<html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <title>Counsillors</title>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+      <style>
+          table {
+              margin: 0 auto;
+              font-size: medium;
+              font-family: 'Gill Sans', 
+                  'Gill Sans MT', ' Calibri', 
+                  'Trebuchet MS', 'sans-serif';
+          }
+
+          .dark-mode {
+              background-color: rgb(29, 29, 29);
+              color: white;
+          }
+    
+          h1 {
+              text-align: center;
+              color: #006600;
+              font-size: xx-large;
+              font-family: 'Gill Sans', 
+                  'Gill Sans MT', ' Calibri', 
+                  'Trebuchet MS', 'sans-serif';
+          }
+
+          p {
+            text-align: center;
+              color: #006600;
+              font-size: small;
+              font-family: 'Gill Sans', 
+                  'Gill Sans MT', ' Calibri', 
+                  'Trebuchet MS', 'sans-serif';
+
+          }
+    
+          td {
+              background-color: #E4F5D4;
+              border: 1px solid black;
+          }
+    
+          th,
+          td {
+              font-weight: bold;
+              border: 1px solid black;
+              padding: 5px;
+              text-align: center;
+          }
+    
+          td {
+              font-weight: lighter;
+          }
+      </style>
+  </head>
+    
+  <body>
+   <section>
+    <br>
+    <h1>Counsillors</h1>
+    <p onclick="darkMode()"> Click for Dark Mode</p>
+    <br>
+    <p>Click on attributes to sort items</p>
+    <br>
+    <table class="sortable" id='table'>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>          
+      </tr>
+    
+<script>
+
+  function darkMode() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+  }
+
+   $(document).ready(function () {
+     $.getJSON("https://raw.githubusercontent.com/batuhanerdeniz/test-go/master/counsillors.json", 
+     function (data) {
+     var variables = '';
+    
+     $.each(data, function (key, value) {
+    
+      variables += '<tr>';
+      variables += '<td>' + 
+      value.id + '</td>';
+    
+      variables += '<td>' + 
+      value.firstName + '</td>';
+    
+      variables += '<td>' + 
+      value.lastName + '</td>';
+    
+      variables += '</tr>';
+    });
+    
+    $('#table').append(variables);
+    });
+   });
+</script>
+
+      </section>
+  </body>
+    
+  </html>
